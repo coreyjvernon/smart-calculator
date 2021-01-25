@@ -12,14 +12,15 @@ class App extends Component {
   }
 
   handleEquation(event) {
-    let action = event.target.outerText
+    let action = event.target.textContent
     let inputOneField = document.getElementsByName('inputOne')[0].value
     let inputTwoField = document.getElementsByName('inputTwo')[0].value
     let url = endpointTarget.endpoint + "/" + action + "?inputOne=" + inputOneField + "&inputTwo=" + inputTwoField;
 
     if (inputOneField !== "" && inputTwoField !== "") {
       fetch(url,{
-        method: 'POST'
+        method: 'POST',
+        mode: 'no-cors'
       }).then(response => {
         if (response) {
           return response.json()
