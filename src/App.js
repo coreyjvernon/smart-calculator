@@ -15,12 +15,12 @@ class App extends Component {
     let action = event.target.textContent
     let inputOneField = document.getElementsByName('inputOne')[0].value
     let inputTwoField = document.getElementsByName('inputTwo')[0].value
-    let url = endpointTarget.endpoint + "/" + action + "?inputOne=" + inputOneField + "&inputTwo=" + inputTwoField;
+    let url = (endpointTarget.endpoint + action + "?inputOne=" + inputOneField + "&inputTwo=" + inputTwoField);
 
     if (inputOneField !== "" && inputTwoField !== "") {
       fetch(url,{
         method: 'POST',
-        mode: 'no-cors'
+        mode: 'cors'
       }).then(response => {
         if (response) {
           return response.json()
@@ -35,8 +35,6 @@ class App extends Component {
         resultToReturn: "Please enter an integer in each field."
       })
     }
-
-    
   }
 
   render() {
@@ -56,6 +54,12 @@ class App extends Component {
           <div onClick={this.handleEquation}>
             <h3>subtract</h3>
           </div>
+          {/* <div onClick={this.handleEquation}>
+            <h3>multiply</h3>
+          </div>
+          <div onClick={this.handleEquation}>
+            <h3>divide</h3>
+          </div> */}
         </div>
         <div className="answer-container">
           <h4><span>Answer</span><br />{this.state.resultToReturn}</h4>
